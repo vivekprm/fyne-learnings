@@ -1,8 +1,8 @@
 package models
 
 import (
-	"fmt"
 	"image/color"
+	"strconv"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"
@@ -30,10 +30,8 @@ func NewBar(height, xPosition, yPosition float32) Bar {
 }
 
 func (b Bar) Draw() fyne.CanvasObject {
-	// xPos := float32(b.position) + 10
-	// yPos := b.height - b.height*barHeightMultiplier
-	text := canvas.NewText(fmt.Sprintf("%f", b.height), color.Black)
-	text.Move(fyne.NewPos(b.xPosition+strokeWidth, b.height-100))
+	text := canvas.NewText(strconv.FormatFloat(float64(b.height), 'f', 0, 32), color.Black)
+	text.Move(fyne.NewPos(b.xPosition, b.yPosition+b.height*barHeightMultiplier))
 	rect := canvas.NewRectangle(color.RGBA{255, 0, 0, 255})
 	rect.Resize(fyne.NewSize(barWidth, b.height*barHeightMultiplier))
 	rect.Move(fyne.NewPos(b.xPosition, b.yPosition))
