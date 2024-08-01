@@ -1,11 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"github.com/vivekprm/fyne-learnings/pkg/models"
+	"github.com/vivekprm/fyne-learnings/pkg/sorting"
 )
 
 const (
@@ -23,4 +25,14 @@ func main() {
 	w.SetContent(graph)
 	w.Resize(fyne.NewSize(width, height))
 	w.ShowAndRun()
+
+	sorting.InsertionSort(arr)
+	print(arr)
+}
+
+func print(arr []int) {
+	for i := 0; i < len(arr)-1; i++ {
+		fmt.Printf("%d, ", arr[i])
+	}
+	fmt.Print(arr[len(arr)-1])
 }
